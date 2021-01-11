@@ -1,0 +1,102 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Ressources/Restaurant/default_chef_empty_handed.png" type="Texture" id=1]
+[ext_resource path="res://Ressources/Restaurant/default_chef_with_plate.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Restaurant/Chef.gd" type="Script" id=3]
+[ext_resource path="res://Ressources/Restaurant/SFX/bad_combo.wav" type="AudioStream" id=5]
+[ext_resource path="res://Ressources/Restaurant/SFX/good_combo.wav" type="AudioStream" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 8, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 24, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 8, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 24, 0, 8, 16 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "plate",
+"speed": 6.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=10]
+radius = 24.0
+height = 64.0
+
+[node name="Chef" type="KinematicBody2D" groups=[
+"chefs",
+]]
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 10, 10 )
+frames = SubResource( 9 )
+animation = "plate"
+frame = 1
+playing = true
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 24 )
+shape = SubResource( 10 )
+
+[node name="Dish" type="Position2D" parent="."]
+position = Vector2( 0, -80 )
+
+[node name="Wait" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Arrow1" type="Position2D" parent="."]
+position = Vector2( -72, -160 )
+
+[node name="Arrow2" type="Position2D" parent="."]
+position = Vector2( -24, -160 )
+
+[node name="Arrow3" type="Position2D" parent="."]
+position = Vector2( 24, -160 )
+
+[node name="Arrow4" type="Position2D" parent="."]
+position = Vector2( 72, -160 )
+
+[node name="Bad" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = 5.0
+
+[node name="Good" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = 5.0
+[connection signal="timeout" from="Wait" to="." method="_on_Wait_timeout"]

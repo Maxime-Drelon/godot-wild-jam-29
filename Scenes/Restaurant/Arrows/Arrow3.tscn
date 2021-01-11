@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Ressources/Restaurant/Arrows/right_arrow.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Restaurant/Arrows/Arrow.gd" type="Script" id=2]
+[ext_resource path="res://Ressources/Restaurant/Arrows/right_green_arrow.png" type="Texture" id=3]
+[ext_resource path="res://Ressources/Restaurant/Arrows/right_red_arrow.png" type="Texture" id=4]
+
+[node name="Arrow3" type="Sprite"]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+type = "right"
+neutral = ExtResource( 1 )
+green = ExtResource( 3 )
+red = ExtResource( 4 )

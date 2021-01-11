@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bad_combo.wav-bba05f63e5ac00be9be9b1393cb53045.sample"
+
+[deps]
+
+source_file="res://Ressources/Restaurant/SFX/bad_combo.wav"
+dest_files=[ "res://.import/bad_combo.wav-bba05f63e5ac00be9be9b1393cb53045.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
